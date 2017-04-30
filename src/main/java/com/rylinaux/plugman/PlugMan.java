@@ -26,6 +26,8 @@ package com.rylinaux.plugman;
  * #L%
  */
 
+import com.google.common.base.Joiner;
+import com.mashape.unirest.http.Unirest;
 import com.rylinaux.plugman.listener.PlugManListener;
 import com.rylinaux.plugman.messaging.MessageFormatter;
 import com.rylinaux.plugman.task.MetricsTask;
@@ -36,6 +38,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -75,6 +78,8 @@ public class PlugMan extends JavaPlugin {
         initAlerts();
         initMetrics();
         initUpdater();
+
+        updateDefaultUserAgent();
 
     }
 
@@ -128,6 +133,18 @@ public class PlugMan extends JavaPlugin {
     }
 
     /**
+     * Update the default User-Agent for Unirest.
+     */
+    private void updateDefaultUserAgent() {
+
+        PluginDescriptionFile desc = this.getDescription();
+        String name = desc.getName(), version = desc.getVersion(), authors = Joiner.on(",").join(desc.getAuthors());
+
+        Unirest.setDefaultHeader("User-Agent", String.format("%s/%s (by %s)", name, version, authors));
+
+    }
+
+    /**
      * Returns the instance of the plugin.
      *
      * @return the instance of the plugin
@@ -155,7 +172,7 @@ public class PlugMan extends JavaPlugin {
     }
 
     public File getFile() {
-        return this.getFile();
+        return super.getFile();
     }
 
 }

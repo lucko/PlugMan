@@ -58,7 +58,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.9-R0.1-SNAPSHOT</version>
+            <version>1.11.2-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.mashape.unirest</groupId>
@@ -99,8 +99,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.3</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -117,10 +117,16 @@
                             <artifactSet>
                                 <includes>
                                     <include>org.mcstats.bukkit</include>
-                                    <include>commons-io</include>
+                                    <include>com.mashape.unirest</include>
+                                    <!--<include>org.apache.httpcomponents</include>-->
                                     <include>commons-logging</include>
-                                    <include>org.apache.httpcomponents</include>
+                                    <include>org.apache.httpcomponents:httpasyncclient</include>
+                                    <include>org.apache.httpcomponents:httpclient</include>
+                                    <include>org.apache.httpcomponents:httpcore</include>
+                                    <include>org.apache.httpcomponents:httpcore-nio</include>
+                                    <include>org.json:json</include>
                                 </includes>
+
                             </artifactSet>
                         </configuration>
                     </execution>
